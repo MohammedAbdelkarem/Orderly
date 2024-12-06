@@ -29,7 +29,7 @@ class AuthService extends BaseService
 
         $code = RandomCode();
 
-        event(new SendEmailEvent($email , $code));
+        // event(new SendEmailEvent($email , $code));
 
         $customer->otp_code = $code;
 
@@ -89,7 +89,7 @@ class AuthService extends BaseService
 
         DB::commit();
 
-        event(new SendEmailEvent($email , $code));
+        // event(new SendEmailEvent($email , $code));
 
 
         $response->otp_code = $code;
