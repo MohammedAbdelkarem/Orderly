@@ -1,0 +1,122 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class {{ class }} extends TestCase
+{
+    /**
+     * A basic feature test example.
+     */
+    public function test_example(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+    }
+}
+
+{
+    "name_ar":product,
+    "name_en":product,
+    "description_ar":desc,
+    "description_en":desc,
+    "price": 100,
+    "store_id": 1,
+    "canvas_id": 1,
+    "canvas_desc": dkdkd,
+    "style_id": 1,
+    "style_desc": dkdkd,
+    "category_ids: ['1' , '2' , '3'],
+    "sub_category_ids: ['1' , '2' , '3'],
+    "colors": [
+        {
+            "color_id":1,
+            "secondary_colors":['#00ff00' , '#0000ff'],
+            "secondary_color_images":['file' , 'file'],
+            "color_images":['file' , 'file'],
+            "sizes":[
+                {
+                    "size_id":1,
+                    "size_desc":fjfjjf,
+                    "quantity":55
+                },
+                {
+                    "size_id":2,
+                    "size_desc":fjfjjf,
+                    "quantity":55
+                }
+            ]
+        },
+        {
+            "color_id":2,
+            "secondary_colors":['#00ff00' , '#0000ff'],
+            "secondary_color_images":['file' , 'file'],
+            "color_images":['file' , 'file'],
+            "sizes":[
+                {
+                    "size_id":3,
+                    "size_desc":fjfjjf,
+                    "quantity":55
+                },
+                {
+                    "size_id":4,
+                    "size_desc":fjfjjf,
+                    "quantity":55
+                }
+            ]
+        }
+    ]
+}
+...........................................................
+//Product Model
+name_ar: product
+name_en: product
+description_ar: desc
+description_en: desc
+price: 100
+store_id: 1
+//FlamingoProduct Model
+canvas_id: 1
+canvas_desc: dkdkd
+style_id: 1
+style_desc: dkdkd
+category_ids[0]: 1
+category_ids[1]: 2
+category_ids[2]: 3
+sub_category_ids[0]: 1
+sub_category_ids[1]: 2
+sub_category_ids[2]: 3
+//FlamingoProductColor Model
+colors[0][color_id]: 1
+colors[0][secondary_colors][0]: #00ff00
+colors[0][secondary_colors][1]: #0000ff
+colors[0][secondary_color_images][0]: [Attach File]
+colors[0][secondary_color_images][1]: [Attach File]
+colors[0][color_images][0]: [Attach File]
+colors[0][color_images][1]: [Attach File]
+//FlamingoProductSize Model
+colors[0][sizes][0][size_id]: 1
+colors[0][sizes][0][size_desc]: fjfjjf
+colors[0][sizes][0][quantity]: 55
+colors[0][sizes][1][size_id]: 2
+colors[0][sizes][1][size_desc]: fjfjjf
+colors[0][sizes][1][quantity]: 55
+//FlamingoProductColor Model
+colors[1][color_id]: 2
+colors[1][secondary_colors][0]: #00ff00
+colors[1][secondary_colors][1]: #0000ff
+colors[1][secondary_color_images][0]: [Attach File]
+colors[1][secondary_color_images][1]: [Attach File]
+colors[1][color_images][0]: [Attach File]
+colors[1][color_images][1]: [Attach File]
+//FlamingoProductSize Model
+colors[1][sizes][0][size_id]: 3
+colors[1][sizes][0][size_desc]: fjfjjf
+colors[1][sizes][0][quantity]: 55
+colors[1][sizes][1][size_id]: 4
+colors[1][sizes][1][size_desc]: fjfjjf
+colors[1][sizes][1][quantity]: 55
