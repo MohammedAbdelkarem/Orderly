@@ -13,6 +13,7 @@ use App\Http\Traits\ApiResponder;
 use App\Constants\MediaCollection;
 use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Mailer\Messenger\MessageHandler;
 
 class AuthService extends BaseService 
@@ -124,7 +125,7 @@ class AuthService extends BaseService
 
         $response = new stdClass;
         // dd($data);
-        if($data['old_password'] !== $customer->password)
+        if(!Hash::check($data['old_password'] , $customer->password))
         {
             return $response->success = 'false';
         }
