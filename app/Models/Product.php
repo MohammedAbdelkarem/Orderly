@@ -23,7 +23,7 @@ class Product extends Model implements HasMedia
 
     public function favourites()
     {
-        return $this->belongsToMany(Favourite::class);
+        return $this->belongsToMany(Customer::class , 'favourites');
     }
 
     public function views()

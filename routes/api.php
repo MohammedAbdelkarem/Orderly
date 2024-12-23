@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,5 +50,19 @@ Route::prefix('customer')->group(function () {
         Route::post('/sendCode', 'sendCode');
         Route::post('/checkCode', 'checkCode');
     });
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/search', 'search')->name('customer.search');
+    });
+    Route::prefix('store')->controller(StoreController::class)->group(function () {
+        Route::get('/all', 'getAll')->name('store.all');
+        Route::get('/home', 'getHome')->name('store.home');
+        Route::get('/details/{id}', 'details')->name('store.details');
+    });
+    Route::prefix('product')->controller(ProductController::class)->group(function () {
+        Route::get('/all/viewed', 'getMostViewed')->name('product.viewed');
+        Route::get('/all/preferred', 'getMostPreferred')->name('product.preferred');
+        Route::get('/all/selled', 'getBestSeller')->name('product.selled');
+        Route::get('/home', 'getHome')->name('product.home');
+        Route::get('/details/{id}', 'details')->name('product.details');
+    });
 });
-
