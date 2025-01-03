@@ -38,6 +38,6 @@ class Product extends Model implements HasMedia
 
     public function variants()
     {
-        return $this->belongsToMany(OrderVariant::class);
+        return $this->belongsToMany(Order::class , 'order_variants')->withPivot('quantity' , 'total_price');
     }
 }

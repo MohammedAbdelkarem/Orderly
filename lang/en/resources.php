@@ -7,4 +7,6 @@ return [
     'Product'                            =>          'product',
     'Products'                           =>          'products',
     'SearchResults'                      =>          'search results',
+    'Order'                              =>          'order',
+    'Orders'                             =>          'orders',
 ];

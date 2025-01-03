@@ -30,7 +30,7 @@ class Order extends Model
 
     public function variants()
     {
-        return $this->belongsToMany(OrderVariant::class);
+        return $this->belongsToMany(Product::class , 'order_variants')->withPivot('quantity' , 'total_price');
     }
 
 

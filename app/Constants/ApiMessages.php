@@ -9,10 +9,12 @@ final class ApiMessages
     const MSG_DELETED_SUCCESSFULLY                              = 'messages.DeletedSuccessfully';
     const MSG_CANCELLED_SUCCESSFULLY                            = 'messages.CancelledSuccessfully';
     const MSG_CORRECT_OTP                                       = 'messages.CorrectOtp';
+    const ORDER_STATUS                                       = 'messages.OrderStatus';
     const MSG_FETCHED_SUCCESSFULLY                              = 'messages.DataSuccessfullyFetched';
     const MSG_ACTIVATE_RESOURCE_SUCCESSFULLY                    = 'messages.ActivateResourceSuccessfully';
     const MSG_STATUS_CHANGED_SUCCESSFULLY                       = 'messages.StatusChangedSeccussfully';
     const MSG_EMAIL_SENDED_SUCCESSFULLY                         = 'messages.EmailSendedSuccessfully';
+    const QUANTITY_NOT_AVAILABLE                                = 'messages.QuantityNotAvailable';
 
     const MSG_ACTIVATE_RESOURCE_ACCOUNT_SUCCESSFULLY            = 'messages.ActivateResourceAccountSuccessfully';
     const MSG_DEACTIVATE_RESOURCE_SUCCESSFULLY                  = 'messages.DeActivateResourceSuccessfully';

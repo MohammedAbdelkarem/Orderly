@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('total_price')->default(0);
             $table->enum('status' , OrderStatusEnum::values())->default(OrderStatusEnum::PREAPERING);
             $table->string('rejected_reason')->nullable();
-            $table->string('user_notes')->nullable();
+            // $table->string('user_notes')->nullable();
             $table->foreignId('customer_id')
                 ->constrained()
                 ->cascadeOnUpdate()

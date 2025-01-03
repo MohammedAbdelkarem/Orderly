@@ -11,4 +11,6 @@ final class Resources
     const RES_PRODUCT              = 'resources.Product';
     const RES_PRODUCTS              = 'resources.Products';
     const RES_SEARCH_RESULTS        = 'resources.SearchResults';
+    const RES_ORDER                 = 'resources.Order';
+    const RES_ORDERS                = 'resources.Orders';
 }

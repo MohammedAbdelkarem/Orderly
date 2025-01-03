@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
@@ -32,6 +33,10 @@ Route::prefix('admin')->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::post('/login', 'login')->name('admin.login');
     });
+    Route::prefix('order')->controller(OrderController::class)->group(function () {
+        Route::post('/reject/{orderId}', 'rejectOrder');
+        Route::post('/changeStatus', 'changeOrderStatus');
+    });
 });
 //user with middleware
 Route::middleware(['auth:customer'])->prefix('customer')->group(function () {
@@ -40,6 +45,13 @@ Route::middleware(['auth:customer'])->prefix('customer')->group(function () {
         Route::post('/changePassword', 'changePassword');
         Route::post('/updateProfile', 'updateProfile');
         Route::get('/getMyProfile', 'getMyProfile')->name('customer.profile');
+    });
+    Route::prefix('order')->controller(OrderController::class)->group(function () {
+        Route::post('/add', 'addProductToOrder');
+        Route::post('/delete', 'deleteProductFromOrder');
+        Route::get('/get', 'getCustomerOrders')->name('customer.orders');
+        Route::get('/details/{orderId}', 'getCustomerOrderDetails')->name('customer.orders.details');
+        Route::post('/cancel/{orderId}', 'cancelOrder');
     });
 });
 //user without middleware
