@@ -13,4 +13,6 @@ class OrderVariant extends Pivot
     protected $guarded = [
         'id'
     ];
+
+    protected $table = 'order_variants';
 }

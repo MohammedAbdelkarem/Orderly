@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('order_variants', function (Blueprint $table) {
             $table->id();
             $table->integer('quantity')->default(0);
+            $table->integer('old_price')->default(0);
             $table->integer('total_price')->default(0);
             $table->foreignId('order_id')
                 ->constrained()

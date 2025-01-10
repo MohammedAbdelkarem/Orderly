@@ -132,4 +132,23 @@ class OrderController extends Controller
         );
     }
 
+    public function submitOrder(string $orderId)
+    {
+        $response = $this->orderService->submitOrder($orderId);
+
+        if($response == false)
+        {
+            return $this->notAllowedResponse(
+                [],
+                messageHandler(
+                    ApiMessages::ORDER_STATUS)
+                );
+        }
+
+        return $this->okResponse(
+            [],
+            messageHandler(ApiMessages::MSG_SUCCESS)
+        );
+    }
+
 }

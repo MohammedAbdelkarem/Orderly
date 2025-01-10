@@ -25,7 +25,7 @@ return [
     'SuccessfullyResettingPassword'     =>  'The code is correct and you have successfully resetting your password.',
     'InvalidOTPCode'                    => 'OTP code is invalid',
     'QuantityNotAvailable'              => 'the required quantity is bigger than the available quantity',
-    'OrderStatus'                       => 'can not update the order because it is not on preapering anymore , you can update just the preapered orders',
+    'OrderStatus'                       => 'can not update the order because it is not on pending anymore , you can update just the pending orders',
     'CorrectOtp'                        => 'OTP code is correct',
     'EmptyData'                         => ':resource Is Empty ',
     'UserIsAlreadyExist'                => ':resource already exists',

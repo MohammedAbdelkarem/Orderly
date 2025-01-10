@@ -27,7 +27,8 @@ class ProductResource extends JsonResource
             $request->routeIs('product.preferred') ||
             $request->routeIs('product.selled') ||
             $request->routeIs('product.home') ||
-            $request->routeIs('customer.search') 
+            $request->routeIs('customer.search') ||
+            $request->routeIs('products.fav')
         )
         {
             $data['name'] = $this->name;

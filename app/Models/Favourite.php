@@ -9,4 +9,10 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class Favourite extends Pivot
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id'
+    ];
+
+    protected $table = 'favourites';
 }

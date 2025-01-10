@@ -23,7 +23,7 @@ class Product extends Model implements HasMedia
 
     public function favourites()
     {
-        return $this->belongsToMany(Customer::class , 'favourites');
+        return $this->belongsToMany(Customer::class , 'favourites')->withPivot('customer_id' , 'product_id');
     }
 
     public function views()
@@ -38,6 +38,6 @@ class Product extends Model implements HasMedia
 
     public function variants()
     {
-        return $this->belongsToMany(Order::class , 'order_variants')->withPivot('quantity' , 'total_price');
+        return $this->belongsToMany(Order::class , 'order_variants')->withPivot('quantity' , 'total_price' , 'old_price');
     }
 }

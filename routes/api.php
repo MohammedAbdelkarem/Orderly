@@ -52,6 +52,7 @@ Route::middleware(['auth:customer'])->prefix('customer')->group(function () {
         Route::get('/get', 'getCustomerOrders')->name('customer.orders');
         Route::get('/details/{orderId}', 'getCustomerOrderDetails')->name('customer.orders.details');
         Route::post('/cancel/{orderId}', 'cancelOrder');
+        Route::post('/submit/{orderId}', 'submitOrder');
     });
 });
 //user without middleware
@@ -76,5 +77,8 @@ Route::prefix('customer')->group(function () {
         Route::get('/all/selled', 'getBestSeller')->name('product.selled');
         Route::get('/home', 'getHome')->name('product.home');
         Route::get('/details/{id}', 'details')->name('product.details');
+        Route::post('/fav/add/{id}', 'addToFav');
+        Route::post('/fav/delete/{id}', 'deleteFromFav');
+        Route::get('/fav/get', 'getFav')->name('products.fav');
     });
 });

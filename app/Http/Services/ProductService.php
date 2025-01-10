@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Constants\Resources;
 use App\Http\Traits\ModelHelper;
+use App\Models\Favourite;
 use stdClass;
 use App\Models\Product;
 use App\Models\Store;
@@ -83,4 +84,46 @@ class ProductService extends BaseService
         return $response;
     }
 
+    public function addToFavorite($productId)
+    {
+        $product = ModelHelper::findByIdOrFail(Product::class , $productId , 'male' , Resources::RES_PRODUCT);
+
+        $product->number_of_preferences++;
+
+        $product->save();
+        $existing = Favourite::where('customer_id' , customer_id())
+                    ->where('product_id' , $product->id)
+                    ->exists();
+
+        if(!$existing)
+        {
+            Favourite::create([
+                'customer_id' => customer_id(),
+                'product_id' => $product->id
+            ]);
+        }
+    }
+
+    public function deleteFromFavorites($productId)
+    {
+        $product = ModelHelper::findByIdOrFail(Product::class , $productId , 'male' , Resources::RES_PRODUCT);
+
+        $product->number_of_preferences--;
+
+        $product->save();
+
+        Favourite::where('customer_id' , customer_id())
+                    ->where('product_id' , $product->id)
+                    ->delete();
+    }
+
+    public function getFavorites()
+    {
+        // dd(3);
+        $ids = Favourite::where('customer_id' , customer_id())->pluck('product_id')->toArray();
+        // dd($ids);
+        $products = Product::whereIn('id' , $ids)->get();
+        // dd($products);
+        return $products;
+    }
 }

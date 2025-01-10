@@ -45,7 +45,7 @@ class Customer extends Authenticatable implements JWTSubject , HasMedia
 
     public function favourites()
     {
-        return $this->belongsToMany(Product::class , 'favourites');
+        return $this->belongsToMany(Product::class , 'favourites')->withPivot('customer_id' , 'product_id');
     }
     public function views()
     {

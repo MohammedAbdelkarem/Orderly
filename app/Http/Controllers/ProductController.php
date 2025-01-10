@@ -76,4 +76,35 @@ class ProductController extends Controller
             ApiMessages::MSG_FETCHED_SUCCESSFULLY , Resources::RES_SEARCH_RESULTS
         ));
     }
+    public function getFav()
+    {
+        $products = $this->productService->getFavorites();
+
+        $response = ProductResource::collection($products);
+
+        return $this->okResponse($response, messageHandler(
+            ApiMessages::MSG_FETCHED_SUCCESSFULLY , Resources::RES_PRODUCTS
+        ));
+    }
+
+    public function addToFav(string $id)
+    {
+        $this->productService->addToFavorite($id);
+
+        // $response = HomePageProductResource::make($);
+
+        return $this->okResponse([], messageHandler(
+            ApiMessages::MSG_SUCCESS
+        ));
+    }
+    public function deleteFromFav(string $id)
+    {
+        $this->productService->deleteFromFavorites($id);
+
+        // $response = HomePageProductResource::make($);
+
+        return $this->okResponse([], messageHandler(
+            ApiMessages::MSG_SUCCESS
+        ));
+    }
 }

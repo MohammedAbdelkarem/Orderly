@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('order_number')->unique();
             $table->integer('total_quantity')->default(0);
             $table->integer('total_price')->default(0);
-            $table->enum('status' , OrderStatusEnum::values())->default(OrderStatusEnum::PREAPERING);
+            $table->enum('status' , OrderStatusEnum::values())->default(OrderStatusEnum::PENDING);
             $table->string('rejected_reason')->nullable();
             // $table->string('user_notes')->nullable();
             $table->foreignId('customer_id')

@@ -26,7 +26,7 @@ class OrderService extends BaseService
         DB::beginTransaction();
         
         $customerCurrentOrder = Order::where('customer_id' , customer_id())
-                            ->where('status' , OrderStatusEnum::PREAPERING)
+                            ->where('status' , OrderStatusEnum::PENDING)
                             ->first();
                             // dd($customerCurrentOrder);
         if($customerCurrentOrder == null)
@@ -38,22 +38,25 @@ class OrderService extends BaseService
                 'customer_id'       => customer_id(),
                 'store_id'          => $product->store_id
             ]);
+            // dd(4);
         }
         else
         {
+            // dd(4);
             $customerCurrentOrder->total_quantity += $data['quantity'];
             $customerCurrentOrder->total_price += $product->price * $data['quantity'];
             $customerCurrentOrder->save();
         }
         // dd(4);
-
+        // dd($customerCurrentOrder);
         OrderVariant::create([
             'quantity'          => $data['quantity'],
             'total_price'       => $product->price * $data['quantity'],
             'order_id'          => $customerCurrentOrder->id,
-            'product_id'        => $data['product_id']
+            'product_id'        => $data['product_id'],
+            'old_price'         => $product->price
         ]);
-
+        // dd(4);
         $product->quantity -= $data['quantity'];
         $product->save();
 
@@ -71,7 +74,7 @@ class OrderService extends BaseService
         $order = ModelHelper::findByIdOrFail(Order::class , $data['order_id'] , 'male' , Resources::RES_ORDER);
         $orderVariant = OrderVariant::where('order_id' , $data['order_id'])->where('product_id' , $data['product_id'])->first();
 
-        if($order->status !== OrderStatusEnum::PREAPERING)
+        if($order->status !== OrderStatusEnum::PENDING)
         {
             return false;
         }
@@ -107,7 +110,7 @@ class OrderService extends BaseService
 
     public function getCustomerOrderDetails($order_id)
     {
-        $details = Order::find($order_id);
+        $details = ModelHelper::findByIdOrFail(Order::class , $order_id , 'male' , Resources::RES_ORDER);
 
         return $details;
     }
@@ -116,7 +119,7 @@ class OrderService extends BaseService
     {
         $order = ModelHelper::findByIdOrFail(Order::class , $order_id , 'male' , Resources::RES_ORDER);
 
-        if($order->status !== OrderStatusEnum::PREAPERING)
+        if($order->status !== OrderStatusEnum::PENDING)
         {
             return false;
         }
@@ -130,12 +133,27 @@ class OrderService extends BaseService
     {
         $order = ModelHelper::findByIdOrFail(Order::class , $order_id , 'male' , Resources::RES_ORDER);
 
-        if($order->status !== OrderStatusEnum::PREAPERING)
+        if($order->status !== OrderStatusEnum::PENDING)
         {
             return false;
         }
 
         $this->destroyOrder($order_id , OrderStatusEnum::REJECTED);
+
+        return true;
+    }
+
+    public function submitOrder($order_id)
+    {
+        $order = ModelHelper::findByIdOrFail(Order::class , $order_id , 'male' , Resources::RES_ORDER);
+
+        if($order->status != OrderStatusEnum::PENDING)
+        {
+            return false;
+        }
+
+        $order->status = OrderStatusEnum::PREAPERING;
+        $order->save();
 
         return true;
     }

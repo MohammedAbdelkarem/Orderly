@@ -22,7 +22,7 @@ class OrderDetailsResource extends JsonResource
         {
             $data['product_name']       = $this->name;
             $data['product_description']       = $this->description;
-            $data['product_price']       = $this->price;
+            $data['product_price']       = $this->pivot->old_price;
             // $data['product_name']       =  $this->product->name; 
             $data['product_image']      =  MediaResource::make(
                 $this->getFirstMedia(
