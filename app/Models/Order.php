@@ -18,6 +18,9 @@ class Order extends Model
         'status' => OrderStatusEnum::class,
     ];
 
+    // protected $table = 'orders';
+    // protected $dateFormat = 'Y-m-d';
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);

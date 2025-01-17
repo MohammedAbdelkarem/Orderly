@@ -25,6 +25,8 @@ class OrderResource extends JsonResource
             $data['total_price']        = $this->total_price;
             $data['status']             = $this->status;
             $data['total_quantity']     = $this->total_quantity;
+            $data['creation_date']      = $this->created_at->format('Y-m-d');
+            $data['last_update']        = $this->updated_at->format('Y-m-d');
 
             if($request->routeIs('customer.orders.details'))
             {
