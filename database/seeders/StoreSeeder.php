@@ -20,8 +20,8 @@ class StoreSeeder extends Seeder
         for($i = 1 ; $i <= 10 ; $i++)
         {
             $store = Store::create([
-                'name' => 'Store_name_'.$i,
-                'description' => 'Store_description_'.$i,
+                'name' => fake()->name(),
+                'description' => fake()->text(200),
                 'has_products' => 1,
                 'number_of_orders' => $i,
                 'number_of_products' => 5

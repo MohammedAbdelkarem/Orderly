@@ -21,13 +21,13 @@ class ProductSeeder extends Seeder
             for($i = 1 ; $i <= 5 ; $i++)
             {
                 $product = Product::create([
-                    'name' => 'Product_name_'.$i + $storeId,
-                    'description' => 'Product_description_'.$i + $storeId,
-                    'price' => $i + $storeId + 10000,
-                    'number_of_preferences' => $i + $storeId + 10,
-                    'number_of_views' => $i + $storeId + 10,
-                    'number_of_orders' => $i + $storeId + 10,
-                    'quantity' => $i + $storeId + 100,
+                    'name' => fake()->name(),
+                    'description' => fake()->text(200),
+                    'price' => fake()->numberBetween(1000 , 9000),
+                    'number_of_preferences' =>  fake()->numberBetween(10 , 1000),
+                    'number_of_views' => fake()->numberBetween(10 , 1000),
+                    'number_of_orders' => fake()->numberBetween(10 , 1000),
+                    'quantity' => fake()->numberBetween(1000 , 9000),
                     'store_id' => $storeId
                 ]);
                 if($i <= 3)
